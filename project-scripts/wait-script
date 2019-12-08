@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[[ -n $1 ]] || { echo "enter program"; exit 1 ; }
+[[ -n $2 ]] || { echo "enter output file"; exit 2 ; }
+source ~/.bashrc
+while [[ $(ps -ef | grep python.*transformers | wc -l) > 1 ]]
+do
+date -Iminutes
+echo sleeping
+sleep 5m
+done
+echo starting
+conda activate transformers
+"$1" "$2"
